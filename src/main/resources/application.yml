@@ -1,6 +1,6 @@
 # HTTP Server (Tomcat) Port
 server: 
-  port: 8080
+  port: 9800
 logging.level.org.hibernate.SQL: DEBUG
 logging.level.org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 # Disable Spring Boot's "Whitelabel" default error page, so we can use our own
@@ -19,13 +19,13 @@ spring:
     gateway:
       routes:
         - id: point_of_sale_auth
-          uri: http://localhost:3333/
+          uri: http://localhost:9821/
           predicates:
             - Path=/auth/**
           filters:
             - RewritePath=/auth/(?<segment>.*), /$\{segment}
         - id: point_of_sale_crm
-          uri:  http://localhost:4444/
+          uri:  http://localhost:9822/
           predicates:
             - Path=/crm/**
           filters:
